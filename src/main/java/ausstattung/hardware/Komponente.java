@@ -19,11 +19,9 @@ public abstract class Komponente {
     public String getName() {
         return this.name;
     }
-
     public String getKategorie() {
         return this.kategorie;
     }
-
     public double getPreis() {
         return this.preis;
     }
