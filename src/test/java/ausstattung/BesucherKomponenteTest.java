@@ -1,5 +1,6 @@
 package ausstattung;
 
+import ausstattung.besucher.BerechneGesamtPreisSpezial;
 import ausstattung.hardware.*;
 import ausstattung.besucher.PrettyPrintKategorieUndName;
 import ausstattung.besucher.PrettyPrintName;
@@ -23,16 +24,6 @@ public class BesucherKomponenteTest {
    }
 
    @Test
-   public void berechneGesamtpreis() {
-      BerechneGesamtPreis besucher = new BerechneGesamtPreis();
-      for (Komponente komponente : ausstattung.getKomponenten()) {
-         komponente.nimmEntgegen(besucher);
-      }
-
-      assertEquals(3000d*0.9d + 488d + 89d + 120d, besucher.getGesamtPreis());
-   }
-
-   @Test
    public void prettyPrintNamen() {
       PrettyPrintName besucher = new PrettyPrintName();
       for (Komponente komponente : ausstattung.getKomponenten()) {
@@ -46,5 +37,25 @@ public class BesucherKomponenteTest {
       for (Komponente komponente : ausstattung.getKomponenten()) {
          komponente.nimmEntgegen(besucher);
       }
+   }
+
+   @Test
+   public void berechneGesamtpreis() {
+      BerechneGesamtPreis besucher = new BerechneGesamtPreis();
+      for (Komponente komponente : ausstattung.getKomponenten()) {
+         komponente.nimmEntgegen(besucher);
+      }
+
+      assertEquals(3000d*0.9d + 488d + 89d + 120d, besucher.getGesamtPreis());
+   }
+
+   @Test
+   public void berechneGesamtpreisMitSpezial() {
+      BerechneGesamtPreisSpezial besucher = new BerechneGesamtPreisSpezial();
+      for (Komponente komponente : ausstattung.getKomponenten()) {
+         komponente.nimmEntgegen(besucher);
+      }
+
+      assertEquals(3000d * 0.5d + 488d + 89d + 120d, besucher.getGesamtPreis());
    }
 }
